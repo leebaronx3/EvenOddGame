@@ -6,6 +6,7 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
 ////* PHASE 1 *////
 function evenOddPhase1() {
     const player1 = { name: '', points: 0 };
@@ -33,10 +34,10 @@ rl.on("close", function () {
 
 ////* PHASE 2 *////
 function runTourment() {
-
     function askUser(askedQ) {
         rl.question(askedQ, (answer) => {
             if ((answer === 'done' && utils.getNumOfPlayers() > 1) || utils.getNumOfPlayers() === 7) {
+                console.log('closed')
                 rl.close();
             } else {
                 if (answer !== 'done') {
@@ -45,12 +46,14 @@ function runTourment() {
                 askUser(askedQ);
             }
         })
+
         rl.on("close", function () {
+            console.log('after closed')
             while (utils.getNumOfPlayers() !== 1) {
                 randomPlayers = utils.rndPlayersNames();
                 gameRound(utils.getPlayer(randomPlayers[0]), utils.getPlayer(randomPlayers[1]), 5)
             }
-            gameRound(utils.getPlayer(utils.rndPlayersNames()), { name: 'Boss', points: 0 }, 5)
+            gameRound(getPlayer(utils.rndPlayersNames()), { name: 'Boss', points: 0 }, 5)
 
             process.exit(0);
         });

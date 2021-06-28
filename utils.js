@@ -21,7 +21,6 @@ function rndIdx(max) {
 
 
 function rndPlayersNames() {
-    console.log('hi')
     let rndPlayer1 = Object.keys(players)[rndIdx(Object.keys(players).length)];
     if (Object.keys(players).length > 1) {
         let rndPlayer2 = Object.keys(players)[rndIdx(Object.keys(players).length)];
